@@ -1,0 +1,23 @@
+java -cp SparkStreamingSessionization.jar com.createksolutions.sessionizer.SessionDataFileWriter 1000000 weblog.txt
+java -cp SparkStreamingSessionization.jar com.createksolutions.sessionizer.SessionDataSocketSender 127.0.0.1 42424 1000000
+java -cp SparkStreamingSessionization.jar com.createksolutions.sessionizer.SessionDataFileHDFSWriter /user/cloud/ss/tmp /user/ss/input 20 10000 20000
+
+
+spark-submit --class com.createksolutions.sessionizer.SessionizeData --master yarn --deploy-mode client --executor-memory 512M --num-executors 4 SparkStreamingSessionization.jar file hdfs://tedmalaska-exp-d-1.ent.createksolutions.com/user/cloud/sessionization/results  hdfs://tedmalaska-exp-d-1.ent.createksolutions.com/user/cloud/sessionization/checkpoint hdfs://tedmalaska-exp-d-1.ent.createksolutions.com/user/cloud/sessionization/input/weblog.txt
+
+spark-submit --class com.createksolutions.sessionizer.SessionizeData --master spark://tedmalaska-exp-d-1.ent.createksolutions.com:7077 --deploy-mode client --executor-memory 512M --num-executors 4  SparkStreamingSessionization.jar file hdfs://192.170.152.76:9000/user/cloud/sessionization/results  hdfs://192.170.152.76:9000/user/cloud/sessionization/checkpoint hdfs://192.170.152.76:9000/user/cloud/sessionization/input/
+
+//play
+spark-submit  --class com.createksolutions.sessionizer.SessionizeData --master spark://tedmalaska-exp-d-1.ent.createksolutions.com:7077 --deploy-mode client --executor-memory 512M --num-executors 4 --driver-java-options * SparkStreamingSessionization.jar file hdfs://192.170.152.76:9000/user/cloud/sessionization/results  hdfs://192.170.152.76:9000/user/cloud/sessionization/checkpoint hdfs://192.170.152.76:9000/user/cloud/
+
+spark-submit  --class com.createksolutions.sessionizer.SessionizeData --master spark://tedmalaska-exp-d-1.ent.createksolutions.com:7077 --deploy-mode client --executor-memory 512M --num-executors 4 --driver-java-options * SparkStreamingSessionization.jar hostPort hdfs://tedmalaska-exp-d-1.ent.createksolutions.com/user/cloud/sessionization/results  hdfs://tedmalaska-exp-d-1.ent.createksolutions.com/user/cloud/sessionization/checkpoint 127.0.0.1 42424
+
+
+//File Test
+hadoop jar SparkStreamingSessionization.jar com.createksolutions.sessionizer.SessionDataFileHDFSWriter /user/cloud/ss/tmp /user/cloud/ss/input 40 10000 9990
+
+spark-submit  --class com.createksolutions.sessionizer.SessionizeData --master spark://tedmalaska-exp-d-1.ent.createksolutions.com:7077 --deploy-mode client --executor-memory 512M --num-executors 4 --driver-java-options * SparkStreamingSessionization.jar newFile hdfs://192.170.152.76:9000/user/cloud/ss/results  hdfs://192.170.152.76:9000/user/cloud/ss/checkpoint hdfs://192.170.152.76:9000/user/cloud/ss/input
+
+spark-submit  --class com.createksolutions.sessionizer.SessionizeData --master yarn --deploy-mode client --executor-memory 512M --num-executors 4 --driver-java-options * SparkStreamingSessionization.jar newFile hdfs://192.170.152.76:9000/user/cloud/ss/results  hdfs://192.170.152.76:9000/user/cloud/ss/checkpoint hdfs://192.170.152.76:9000/user/cloud/ss/input
+
+ SparkStreamingSessionization.jar  
