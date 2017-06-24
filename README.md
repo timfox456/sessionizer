@@ -3,7 +3,7 @@ Sessionizer
 
 ### About
 
-This project is done by Elephantscale, based on the Cloudera's blog (which did not work out of the box).
+I based this on Cloudera's blog (which did not work out of the box).
 
 Blog: http://blog.cloudera.com/blog/2014/11/how-to-do-near-real-time-sessionization-with-spark-streaming-and-apache-hadoop/
 
