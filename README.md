@@ -3,6 +3,10 @@ Sessionizer
 
 ### About
 
+Sessionizer is a real-time Spark Streaming based library which will "sessionize"
+web traffic. In other words, it applies session IDs based on inference of 
+traffic.`
+
 I based this on Cloudera's blog (which did not work out of the box).
 
 Blog: http://blog.cloudera.com/blog/2014/11/how-to-do-near-real-time-sessionization-with-spark-streaming-and-apache-hadoop/
